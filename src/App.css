@@ -1,38 +1,109 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: #50d890;
   min-height: 100vh;
-  display: flex;
+  /* display: flex; */
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.solitaire {
+  display: grid;
+  width: 100vw;
+  height: 100%;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+  padding: 25px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.deck {
+  grid-column: 1 / 2;
+  height: 200px;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+.waste-pile {
+  grid-column: 2 / 3;
+  height: 200px;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+.foundation {
+  height: 200px;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+.foundation:nth-child(3) {
+  grid-column: 4 / 5;
+}
+
+.foundation:nth-child(4) {
+  grid-column: 5  /6;
+}
+
+.foundation:nth-child(5) {
+  grid-column: 6 / 7;
+}
+
+.foundation:nth-child(6) {
+  grid-column: 7 / 8;
+}
+
+.pile {
+  height: 200px;
+  border: 3px solid black;
+  border-radius: 10px;
+}
+
+.pile:nth-child(7) {
+  grid-column: 1 / 2;
+}
+
+.pile:nth-child(8) {
+  grid-column: 2 / 3;
+}
+
+.pile:nth-child(9) {
+  grid-column: 3 / 4;
+}
+
+.pile:nth-child(10) {
+  grid-column: 4 / 5;
+}
+
+.pile:nth-child(11) {
+  grid-column: 5 / 6;
+}
+
+.pile:nth-child(12) {
+  grid-column: 6 / 7;
+}
+
+.pile:nth-child(13) {
+  grid-column: 7 / 8;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  color: black;
+  background: whitesmoke;
+  border-radius: 7px;
 }
