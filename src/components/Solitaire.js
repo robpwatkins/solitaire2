@@ -4,10 +4,9 @@ import WastePile from '../components/WastePile';
 import Foundation from '../components/Foundation';
 import Pile from '../components/Pile';
 import { cards } from '../cards';
-import Card from '../components/Card';
 
 const Solitaire = () => {
-  const[foundation1, setFoundation1] = useState([]);
+  const [foundation1, setFoundation1] = useState([]);
   // const[foundation2, setFoundation2] = useState([]);
   // const[foundation3, setFoundation3] = useState([]);
   // const[foundation4, setFoundation4] = useState([]);
@@ -34,7 +33,7 @@ const Solitaire = () => {
     <div className="solitaire">
       <Deck />
       <WastePile />
-      <Foundation cards={foundation1} setCards={setFoundation1} />
+      <Foundation cards={foundation1} setCards={setFoundation1} clickedCard={clickedCard} setClickedCard={setClickedCard} />
       <Foundation />
       <Foundation />
       <Foundation />
