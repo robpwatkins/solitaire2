@@ -9,7 +9,6 @@ const Pile = (props) => {
   let topCard = props.cards[props.cards.length - 1];
 
   useEffect(() => {
-    console.log('Pile1', props.clickedCard.length, isClicked);
   }, [isClicked, props.clickedCard]);
 
   useOutsideClickAlerter(ref, (event, data) => {
@@ -17,21 +16,33 @@ const Pile = (props) => {
     if (targetName === 'solitaire') {
       return;
     }
-    console.log('event', event.target);
     if (targetName === 'card') {
       setIsClicked(isClicked => isClicked = false);
+    }
+    if (targetName === 'foundation empty') {
+      if (props.cards.length > 0) {
+        if (topCard.rank === 1) {
+          setIsClicked(isClicked => isClicked = false);
+          props.setMoveSuccessful(moveSuccessful => moveSuccessful = true);
+          let cards = props.cards;
+          cards.splice(cards.length - 1);
+          props.setCards(...props.cards, cards);
+        }
+      }
     }
   });
 
   return (
     <div className={isClicked ? "pile clicked" : "pile"} ref={ref}>
-      <Card 
-        {...topCard}
-        clickedCard={props.clickedCard}
-        setClickedCard={props.setClickedCard}
-        setIsClicked={setIsClicked}
-        isClicked={isClicked}
-      />
+      {props.cards.length > 0 &&
+        <Card 
+          {...topCard}
+          clickedCard={props.clickedCard}
+          setClickedCard={props.setClickedCard}
+          setIsClicked={setIsClicked}
+          isClicked={isClicked}
+        />
+      }
     </div>
   )
 }

@@ -18,6 +18,7 @@ const Solitaire = () => {
   // const [pile6, setPile6] = useState([]);
   // const [pile7, setPile7] = useState([]);
   const [clickedCard, setClickedCard] = useState([]);
+  const [moveSuccessful, setMoveSuccessful] = useState(false);
 
   useEffect(() => {
     setPile1(pile1 => pile1 = [cards[0]]);
@@ -28,18 +29,39 @@ const Solitaire = () => {
     // setPile6(pile6 => pile6 = [cards[5], cards[11], cards[16], cards[20], cards[23], cards[25]]);
     // setPile7(pile7 => pile7 = [cards[6], cards[12], cards[17], cards[21], cards[24], cards[26], cards[27]]);
     // setFoundation1([]);
+
   }, [setFoundation1, setPile1, setPile2]);
 
   return (
     <div className="solitaire">
       <Deck />
       <WastePile />
-      <Foundation cards={foundation1} setCards={setFoundation1} clickedCard={clickedCard} setClickedCard={setClickedCard} />
+      <Foundation
+        cards={foundation1}
+        setCards={setFoundation1}
+        clickedCard={clickedCard}
+        setClickedCard={setClickedCard}
+        moveSuccessful={moveSuccessful}
+        setMoveSuccessful={setMoveSuccessful}
+      />
       {/* <Foundation /> */}
       {/* <Foundation /> */}
       {/* <Foundation /> */}
-      <Pile cards={pile1} setCards={setPile1} clickedCard={clickedCard} setClickedCard={setClickedCard} />
-      <Pile cards={pile2} setCards={setPile2} clickedCard={clickedCard} setClickedCard={setClickedCard} />
+      <Pile
+        cards={pile1}
+        setCards={setPile1}
+        clickedCard={clickedCard}
+        setClickedCard={setClickedCard}
+        moveSuccessful={moveSuccessful}
+        setMoveSuccessful={setMoveSuccessful}
+      />
+      <Pile
+        cards={pile2}
+        setCards={setPile2}
+        clickedCard={clickedCard}
+        setClickedCard={setClickedCard}
+        moveSuccessful={moveSuccessful}
+        setMoveSuccessful={setMoveSuccessful}/>
       {/* <Pile /> */}
       {/* <Pile /> */}
       {/* <Pile /> */}

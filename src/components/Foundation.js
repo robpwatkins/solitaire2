@@ -9,13 +9,14 @@ const Foundation = (props) => {
     topCard = props.cards[props.cards.length - 1];
   }
 
-  const handleClick =() => {
+  const handleClick = () => {
     if (props.cards.length === 0) {
       if (props.clickedCard.rank === 1) {
         let card = {
           rank: props.clickedCard.rank,
           suit: props.clickedCard.suit
         }
+        props.setMoveSuccessful(moveSuccessful => moveSuccessful = true);
         props.setCards([...props.cards, card]);
       }
     }
@@ -25,6 +26,7 @@ const Foundation = (props) => {
     <div 
       className={props.cards.length > 0 ? "foundation" : "foundation empty"}
       onClick={handleClick}
+      {...(props.cards.length > 0 && {value: 'heyoo'})}
     >
       {props.cards.length > 0 &&
         <Card 
