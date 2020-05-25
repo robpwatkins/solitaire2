@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from '../components/Card';
 
 const Foundation = (props) => {
-  const [isClicked, setIsClicked] = useState(false);
 
   let topCard;
   if (props.cards.length > 0) {
@@ -16,15 +15,14 @@ const Foundation = (props) => {
           rank: props.clickedCard.rank,
           suit: props.clickedCard.suit
         }
-        props.setMoveSuccessful(moveSuccessful => moveSuccessful = true);
+        // props.setMoveSuccessful(moveSuccessful => moveSuccessful = true);
         props.setCards([...props.cards, card]);
       }
     }
   }
 
   return (
-    <div 
-      className={props.cards.length > 0 ? "foundation" : "foundation empty"}
+    <div className={props.cards.length > 0 ? "foundation" : "foundation empty"}
       onClick={handleClick}
     >
       {props.cards.length > 0 &&
@@ -32,7 +30,8 @@ const Foundation = (props) => {
           {...topCard}
           clickedCard={props.clickedCard}
           setClickedCard={props.setClickedCard}
-          setIsClicked={setIsClicked}
+          isInMove={props.isInMove}
+          setIsInMove={props.setIsInMove}
         />
       }
     </div>

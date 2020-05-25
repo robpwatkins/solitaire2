@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Deck from '../components/Deck';
 import WastePile from '../components/WastePile';
-import Foundation from '../components/Foundation';
-import Pile from '../components/Pile';
 import { cards } from '../cards';
+import Foundations from '../components/Foundations';
+import Tableau from '../components/Tableau';
 
 const Solitaire = () => {
-  const [foundation1, setFoundation1] = useState([]);
+  const [fnd1, setFnd1] = useState([]);
   // const[foundation2, setFoundation2] = useState([]);
   // const[foundation3, setFoundation3] = useState([]);
   // const[foundation4, setFoundation4] = useState([]);
@@ -18,7 +18,7 @@ const Solitaire = () => {
   // const [pile6, setPile6] = useState([]);
   // const [pile7, setPile7] = useState([]);
   const [clickedCard, setClickedCard] = useState([]);
-  const [moveSuccessful, setMoveSuccessful] = useState(false);
+  const [isInMove, setIsInMove] = useState('');
 
   useEffect(() => {
     setPile1(pile1 => pile1 = [cards[0]]);
@@ -28,45 +28,30 @@ const Solitaire = () => {
     // setPile5(pile5 => pile5 = [cards[4], cards[10], cards[15], cards[19], cards[22]]);
     // setPile6(pile6 => pile6 = [cards[5], cards[11], cards[16], cards[20], cards[23], cards[25]]);
     // setPile7(pile7 => pile7 = [cards[6], cards[12], cards[17], cards[21], cards[24], cards[26], cards[27]]);
-    // setFoundation1([]);
 
-  }, [setFoundation1, setPile1, setPile2]);
+  }, [setFnd1, setPile1, setPile2]);
 
   return (
     <div className="solitaire">
       <Deck />
       <WastePile />
-      <Foundation
-        cards={foundation1}
-        setCards={setFoundation1}
+      <Foundations 
+        fnd1={fnd1}
+        setFnd1={setFnd1}
         clickedCard={clickedCard}
         setClickedCard={setClickedCard}
-        moveSuccessful={moveSuccessful}
-        setMoveSuccessful={setMoveSuccessful}
+        isInMove={setIsInMove}
       />
-      {/* <Foundation /> */}
-      {/* <Foundation /> */}
-      {/* <Foundation /> */}
-      <Pile
-        cards={pile1}
-        setCards={setPile1}
+      <Tableau 
+        pile1={pile1}
+        setPile1={setPile1}
+        pile2={pile2}
+        setPile2={setPile2}
         clickedCard={clickedCard}
         setClickedCard={setClickedCard}
-        moveSuccessful={moveSuccessful}
-        setMoveSuccessful={setMoveSuccessful}
+        isInMove={isInMove}
+        setIsInMove={setIsInMove}
       />
-      <Pile
-        cards={pile2}
-        setCards={setPile2}
-        clickedCard={clickedCard}
-        setClickedCard={setClickedCard}
-        moveSuccessful={moveSuccessful}
-        setMoveSuccessful={setMoveSuccessful}/>
-      {/* <Pile /> */}
-      {/* <Pile /> */}
-      {/* <Pile /> */}
-      {/* <Pile /> */}
-      {/* <Pile /> */}
     </div>
   )
 }

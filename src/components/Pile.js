@@ -4,42 +4,52 @@ import { useOutsideClickAlerter } from '../outsideClickAlerter';
 
 const Pile = (props) => {
   const ref = useRef();
-  const [isClicked, setIsClicked] = useState(false);
   
   let topCard = props.cards[props.cards.length - 1];
 
-  useEffect(() => {
-  }, [isClicked, props.clickedCard]);
+  // useEffect(() => {
+  // }, [isClicked, props.clickedCard]);
+
+  const handleClick = () => {
+    if (props.clickedCard.length === 0) {
+      props.setIsClicked(isClicked => isClicked = true);
+    } else
+    if (props.clickedCard.rank === topCard.rank && props.clickedCard.suit === topCard.suit) {
+      props.setIsClicked(isClicked => isClicked = false);
+    }
+  }
 
   useOutsideClickAlerter(ref, (event) => {
-    if (isClicked) {
-      let targetName = event.target.getAttribute('class');
-      if (targetName === 'solitaire') {
-        return;
-      }
-      if (targetName === 'card') {
-        setIsClicked(isClicked => isClicked = false);
-        return;
-      }
-      if (targetName === 'foundation empty' && props.cards.length > 0 && topCard.rank === 1) {
-        setIsClicked(isClicked => isClicked = false);
-        let cards = props.cards;
-        cards.splice(cards.length - 1);
-        props.setCards(...props.cards, cards);
-      }
+    let targetName = event.target.getAttribute('class');
+    if (targetName === 'solitaire') return;
+    if (targetName === 'card') {
+      props.setIsClicked(isClicked => isClicked = false);
     }
+    // if (props.isClicked) {
+    //   if (targetName === 'foundation empty') {
+    //     props.setIsClicked(isClicked => isClicked = false);
+    //     let cards = props.cards;
+    //     cards.splice(cards.length - 1);
+    //     props.setCards(...props.cards, cards);
+    //   }
+    // }
   });
-  
+  // console.log('Pile: ', props.name);
   return (
-    <div className={isClicked ? "pile clicked" : "pile"} ref={ref}>
+    <div 
+      onClick={handleClick}
+      className={props.isClicked ? "pile clicked" : "pile"} ref={ref}
+    >
       {props.cards.length > 0 &&
         <Card 
+          name={props.name}  
           {...topCard}
           clickedCard={props.clickedCard}
           setClickedCard={props.setClickedCard}
-          setIsClicked={setIsClicked}
-          isClicked={isClicked}
-        />
+          isClicked={props.isClicked}
+          setIsClicked={props.setIsClicked}
+          isInMove={props.isInMove}
+          setIsInMove={props.setIsInMove}/>
       }
     </div>
   )

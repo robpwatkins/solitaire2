@@ -32,6 +32,10 @@
   color: black;
   background: whitesmoke;
   border-radius: 7px;
+  -webkit-user-select: none;  
+  -moz-user-select: none;    
+  -ms-user-select: none;      
+  user-select: none;
 }
 
 .clicked {
@@ -62,11 +66,11 @@
   border: 2px dashed rgba(0, 0, 0, 0.459);
 }
 
-.foundation:nth-child(3) {
+.foundation {
   grid-column: 4 / 5;
 }
 
-.foundation:nth-child(4) {
+/* .foundation:nth-child(4) {
   grid-column: 5  /6;
 }
 
@@ -76,7 +80,7 @@
 
 .foundation:nth-child(6) {
   grid-column: 7 / 8;
-}
+} */
 
 .pile {
   height: 200px;
