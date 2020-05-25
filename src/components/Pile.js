@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Card from '../components/Card';
 import { useOutsideClickAlerter } from '../outsideClickAlerter';
 
@@ -8,11 +8,16 @@ const Pile = (props) => {
   
   let topCard = props.cards[props.cards.length - 1];
 
-  useOutsideClickAlerter(ref, (event) => {
+  useEffect(() => {
+    console.log('Pile1', props.clickedCard.length, isClicked);
+  }, [isClicked, props.clickedCard]);
+
+  useOutsideClickAlerter(ref, (event, data) => {
     let targetName = event.target.getAttribute('class')
     if (targetName === 'solitaire') {
       return;
     }
+    console.log('event', event.target);
     if (targetName === 'card') {
       setIsClicked(isClicked => isClicked = false);
     }

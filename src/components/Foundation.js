@@ -20,7 +20,7 @@ const Foundation = (props) => {
       }
     }
   }
-  console.log(props.cards);
+
   return (
     <div 
       className={props.cards.length > 0 ? "foundation" : "foundation empty"}
