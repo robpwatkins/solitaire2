@@ -11,27 +11,25 @@ const Pile = (props) => {
   useEffect(() => {
   }, [isClicked, props.clickedCard]);
 
-  useOutsideClickAlerter(ref, (event, data) => {
-    let targetName = event.target.getAttribute('class')
-    if (targetName === 'solitaire') {
-      return;
-    }
-    if (targetName === 'card') {
-      setIsClicked(isClicked => isClicked = false);
-    }
-    if (targetName === 'foundation empty') {
-      if (props.cards.length > 0) {
-        if (topCard.rank === 1) {
-          setIsClicked(isClicked => isClicked = false);
-          props.setMoveSuccessful(moveSuccessful => moveSuccessful = true);
-          let cards = props.cards;
-          cards.splice(cards.length - 1);
-          props.setCards(...props.cards, cards);
-        }
+  useOutsideClickAlerter(ref, (event) => {
+    if (isClicked) {
+      let targetName = event.target.getAttribute('class');
+      if (targetName === 'solitaire') {
+        return;
+      }
+      if (targetName === 'card') {
+        setIsClicked(isClicked => isClicked = false);
+        return;
+      }
+      if (targetName === 'foundation empty' && props.cards.length > 0 && topCard.rank === 1) {
+        setIsClicked(isClicked => isClicked = false);
+        let cards = props.cards;
+        cards.splice(cards.length - 1);
+        props.setCards(...props.cards, cards);
       }
     }
   });
-
+  
   return (
     <div className={isClicked ? "pile clicked" : "pile"} ref={ref}>
       {props.cards.length > 0 &&

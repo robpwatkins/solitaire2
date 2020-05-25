@@ -26,7 +26,6 @@ const Foundation = (props) => {
     <div 
       className={props.cards.length > 0 ? "foundation" : "foundation empty"}
       onClick={handleClick}
-      {...(props.cards.length > 0 && {value: 'heyoo'})}
     >
       {props.cards.length > 0 &&
         <Card 
