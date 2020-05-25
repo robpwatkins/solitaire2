@@ -11,10 +11,11 @@ const Card = (props) => {
       }
       props.setClickedCard(clickedCard => clickedCard = card);
       props.setIsInMove(isInMove => isInMove = stackName);
-    } else {
-      props.setClickedCard(...[]);
-      props.setIsInMove(isInMove => isInMove = '');
-    }
+    } 
+    // else {
+      // props.setIsInMove(isInMove => isInMove = '');
+      // props.setClickedCard([]);
+    // }
   }
 
   return (

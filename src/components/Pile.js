@@ -11,21 +11,37 @@ const Pile = (props) => {
   //   props.setIsClicked(props.isClicked);
   // }, []);
   
-  const handleClick = () => {
-    // let stackName = event.target.getAttribute('value');
+  const handleClick = (event) => {
+    let stackName = event.target.getAttribute('value');
     if (props.isInMove === '') {
       props.setIsClicked(isClicked => isClicked = true);
-    }
-    if (props.isInMove === props.name) {
-      props.setIsClicked(isClicked => isClicked = false);
+    } else {
+      if (props.isInMove === props.name) {
+        props.setIsClicked(isClicked => isClicked = false);
+      }
+      // if (props.isInMove !== stackName) {
+      //   props.setIsClicked(isClicked => isClicked = false);
+      //   props.setIsInMove(isInMove => isInMove = '');
+      //   props.setClickedCard([]);
+      // }
     }
   }
 
-  useOutsideClickAlerter(ref);
+  useOutsideClickAlerter(ref, (event) => {
+    let targetName = event.target.getAttribute('class');
+    let stackName = event.target.getAttribute('value');
+    if (targetName === 'solitaire') {
+      props.setIsClicked(isClicked => isClicked = false);
+      props.setIsInMove(isInMove => isInMove = '');
+    }
+    if (targetName === 'card') {
+      console.log(targetName, props.name);
+    }
+  });
   
   return (
     <div 
-      onClick={handleClick}
+      onClick={(event) => handleClick(event)}
       className={props.isClicked ? "pile clicked" : "pile"} ref={ref}
     >
       {props.cards.length > 0 &&
