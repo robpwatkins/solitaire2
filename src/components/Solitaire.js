@@ -18,7 +18,7 @@ const Solitaire = () => {
   // const [pile5, setPile5] = useState([]);
   // const [pile6, setPile6] = useState([]);
   // const [pile7, setPile7] = useState([]);
-  const [clickedCard, setClickedCard] = useState();
+  const [clickedCard, setClickedCard] = useState([]);
 
   useEffect(() => {
     setPile1(pile1 => pile1 = [cards[0]]);
@@ -38,8 +38,8 @@ const Solitaire = () => {
       <Foundation />
       <Foundation />
       <Foundation />
-      <Pile cards={pile1} setCards={setPile1} setClickedCard={setClickedCard} />
-      {/* <Pile /> */}
+      <Pile cards={pile1} setCards={setPile1} clickedCard={clickedCard} setClickedCard={setClickedCard} />
+      <Pile cards={pile2} setCards={setPile2} clickedCard={clickedCard} setClickedCard={setClickedCard} />
       {/* <Pile /> */}
       {/* <Pile /> */}
       {/* <Pile /> */}

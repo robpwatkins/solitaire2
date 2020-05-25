@@ -7,8 +7,14 @@ const Card = (props) => {
       rank: props.rank,
       suit: props.suit
     }
-    props.setClickedCard(clickedCard => clickedCard = card);
-    props.setIsClicked(!props.isClicked);
+    if (props.clickedCard.length === 0) {
+      props.setClickedCard(clickedCard => clickedCard = card);
+      props.setIsClicked(isClicked => isClicked = true);
+    }
+    else {
+      props.setIsClicked(isClicked => isClicked = false);
+      props.setClickedCard(clickedCard => clickedCard = []);
+    }
   }
 
   return (

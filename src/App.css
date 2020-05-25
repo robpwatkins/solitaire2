@@ -48,13 +48,13 @@
 .waste-pile {
   grid-column: 2 / 3;
   height: 200px;
-  border: 3px solid black;
+  /* background: #48c281; */
   border-radius: 10px;
 }
 
 .foundation {
   height: 200px;
-  border: 3px solid rgba(0, 0, 0, 0.459);
+  border: 2px dashed rgba(0, 0, 0, 0.459);
   border-radius: 10px;
 }
 
