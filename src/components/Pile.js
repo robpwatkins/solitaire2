@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Card from '../components/Card';
 
 const Pile = (props) => {
-  const [cardStack, setCardStack] = useState([]);
-
-  useEffect(() => {
-    setCardStack(...cardStack, props.cards);
-  }, [setCardStack]);
+  const [isClicked, setIsClicked] = useState(false);
   
-  let topCard = cardStack[cardStack.length - 1];
+  let topCard = props.cards[props.cards.length - 1];
+
+  isClicked && console.log('heyoo');
 
   return (
-    <div className="pile">
-      <Card {...topCard} />
+    <div className={isClicked ? "pile clicked" : "pile"}>
+      <Card 
+        {...topCard}
+        setClickedCard={props.setClickedCard}
+        setIsClicked={setIsClicked}
+        isClicked={isClicked}
+      />
     </div>
   )
 }
