@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Card from '../components/Card';
-import { useOutsideClickAlerter } from '../outsideClickAlerter';
+import { useOutsideClickAlerter } from '../useOutsideClickAlerter';
 
 const Pile = (props) => {
   const ref = useRef();
@@ -12,32 +12,32 @@ const Pile = (props) => {
   // }, []);
   
   const handleClick = (event) => {
-    let stackName = event.target.getAttribute('value');
-    if (props.isInMove === '') {
-      props.setIsClicked(isClicked => isClicked = true);
-    } else {
-      if (props.isInMove === props.name) {
-        props.setIsClicked(isClicked => isClicked = false);
-      }
-      // if (props.isInMove !== stackName) {
-      //   props.setIsClicked(isClicked => isClicked = false);
-      //   props.setIsInMove(isInMove => isInMove = '');
-      //   props.setClickedCard([]);
-      // }
-    }
+  //   let stackName = event.target.getAttribute('value');
+  //   if (props.isInMove === '') {
+  //     props.setIsClicked(isClicked => isClicked = true);
+  //   } else {
+  //     if (props.isInMove === props.name) {
+  //       props.setIsClicked(isClicked => isClicked = false);
+  //     }
+  //     // if (props.isInMove !== stackName) {
+  //     //   props.setIsClicked(isClicked => isClicked = false);
+  //     //   props.setIsInMove(isInMove => isInMove = '');
+  //     //   props.setClickedCard([]);
+  //     // }
+  //   }
   }
 
-  useOutsideClickAlerter(ref, (event) => {
-    let targetName = event.target.getAttribute('class');
-    let stackName = event.target.getAttribute('value');
-    if (targetName === 'solitaire') {
-      props.setIsClicked(isClicked => isClicked = false);
-      props.setIsInMove(isInMove => isInMove = '');
-    }
-    if (targetName === 'card') {
-      console.log(targetName, props.name);
-    }
-  });
+  // useOutsideClickAlerter(ref, (event) => {
+  //   let targetName = event.target.getAttribute('class');
+  //   let stackName = event.target.getAttribute('value');
+  //   if (targetName === 'solitaire') {
+  //     props.setIsClicked(isClicked => isClicked = false);
+  //     props.setIsInMove(isInMove => isInMove = '');
+  //   }
+  //   if (targetName === 'card') {
+  //     console.log(targetName, props.name);
+  //   }
+  // });
   
   return (
     <div 

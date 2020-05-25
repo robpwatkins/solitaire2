@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { usePreviousValue } from '../usePreviousValue';
 
 const Card = (props) => {
+  let currentCard = {
+    card: {
+      rank: props.rank,
+      suit: props.suit
+    }
+  }
 
+  let prevCard = usePreviousValue(props.clickedCard);
+  
   const handleClick = (event) => {
     if (props.isInMove === '') {
-      let stackName = event.target.getAttribute('value');
-      let card = {
-        rank: props.rank,
-        suit: props.suit
-      }
-      props.setClickedCard(clickedCard => clickedCard = card);
-      props.setIsInMove(isInMove => isInMove = stackName);
+      props.setClickedCard(clickedCard => clickedCard = currentCard);
+      props.setIsClicked(isClicked => isClicked = true);
     } 
     // else {
       // props.setIsInMove(isInMove => isInMove = '');
       // props.setClickedCard([]);
     // }
   }
-
+  console.log({prevCard});
   return (
     <div
       value={props.name}

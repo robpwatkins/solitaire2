@@ -5,9 +5,6 @@ const Tableau = (props) => {
   const [pile1Clicked, setPile1Clicked] = useState(null);
   const [pile2Clicked, setPile2Clicked] = useState(null);
 
-  useEffect(() => {
-  })
-  
   return (
     <>
       <Pile
