@@ -54,8 +54,12 @@
 
 .foundation {
   height: 200px;
-  border: 2px dashed rgba(0, 0, 0, 0.459);
+  border: 3px solid black;
   border-radius: 10px;
+}
+
+.empty {
+  border: 2px dashed rgba(0, 0, 0, 0.459);
 }
 
 .foundation:nth-child(3) {

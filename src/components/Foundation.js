@@ -5,7 +5,7 @@ const Foundation = (props) => {
   const [isClicked, setIsClicked] = useState(false);
 
   let topCard;
-  if (props.cards !== undefined) {
+  if (props.cards.length > 0) {
     topCard = props.cards[props.cards.length - 1];
   }
 
@@ -20,15 +20,20 @@ const Foundation = (props) => {
       }
     }
   }
-
+  console.log(props.cards);
   return (
-    <div className="foundation" onClick={handleClick}>
-      <Card 
-        {...topCard}
-        clickedCard={props.clickedCard}
-        setClickedCard={props.setClickedCard}
-        setIsClicked={setIsClicked}
-      />
+    <div 
+      className={props.cards.length > 0 ? "foundation" : "foundation empty"}
+      onClick={handleClick}
+    >
+      {props.cards.length > 0 &&
+        <Card 
+          {...topCard}
+          clickedCard={props.clickedCard}
+          setClickedCard={props.setClickedCard}
+          setIsClicked={setIsClicked}
+        />
+      }
     </div>
   )
 }
