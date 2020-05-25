@@ -30,18 +30,18 @@ const Solitaire = () => {
     // setPile7(pile7 => pile7 = [cards[6], cards[12], cards[17], cards[21], cards[24], cards[26], cards[27]]);
 
   }, [setFnd1, setPile1, setPile2]);
-
+  
   return (
     <div className="solitaire">
       <Deck />
       <WastePile />
-      <Foundations 
+      {/* <Foundations 
         fnd1={fnd1}
         setFnd1={setFnd1}
         clickedCard={clickedCard}
         setClickedCard={setClickedCard}
         isInMove={setIsInMove}
-      />
+      /> */}
       <Tableau 
         pile1={pile1}
         setPile1={setPile1}

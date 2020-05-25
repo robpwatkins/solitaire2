@@ -88,7 +88,7 @@
   border-radius: 10px;
 }
 
-.pile:nth-child(4) {
+.pile:nth-child(3) {
   grid-column: 1 / 2;
 }
 

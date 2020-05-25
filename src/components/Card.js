@@ -3,22 +3,20 @@ import React from 'react';
 const Card = (props) => {
 
   const handleClick = (event) => {
-    let stackName = event.target.getAttribute('value');
-    props.setIsInMove(stackName);
-    console.log('Card: ', props.isInMove);
-    let card = {
-      rank: props.rank,
-      suit: props.suit
-    }
-    if (props.clickedCard.length === 0) {
+    if (props.isInMove === '') {
+      let stackName = event.target.getAttribute('value');
+      let card = {
+        rank: props.rank,
+        suit: props.suit
+      }
       props.setClickedCard(clickedCard => clickedCard = card);
-      // props.setIsClicked(isClicked => isClicked = true);
-    }
-    else {
-      // props.setIsClicked(isClicked => isClicked = false);
-      props.setClickedCard(clickedCard => clickedCard = []);
+      props.setIsInMove(isInMove => isInMove = stackName);
+    } else {
+      props.setClickedCard(...[]);
+      props.setIsInMove(isInMove => isInMove = '');
     }
   }
+
   return (
     <div
       value={props.name}

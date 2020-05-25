@@ -5,8 +5,7 @@ export const useOutsideClickAlerter = (ref, handler) => {
     () => {
       const listener = event => {
         let targetName = event.target.getAttribute('class');
-        if (!ref.current ||  ref.current.contains(event.target)) return;
-        handler(event);
+        if (targetName === 'solitaire') return;
       };
 
       document.addEventListener('mousedown', listener);

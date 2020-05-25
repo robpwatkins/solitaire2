@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Pile from '../components/Pile';
 
 const Tableau = (props) => {
-  const [pile1Clicked, setPile1Clicked] = useState(false);
-  const [pile2Clicked, setPile2Clicked] = useState(false);
+  const [pile1Clicked, setPile1Clicked] = useState(null);
+  const [pile2Clicked, setPile2Clicked] = useState(null);
 
   useEffect(() => {
   })
-
+  
   return (
     <>
       <Pile

@@ -8,33 +8,21 @@ const Pile = (props) => {
   let topCard = props.cards[props.cards.length - 1];
 
   // useEffect(() => {
-  // }, [isClicked, props.clickedCard]);
-
+  //   props.setIsClicked(props.isClicked);
+  // }, []);
+  
   const handleClick = () => {
-    if (props.clickedCard.length === 0) {
+    // let stackName = event.target.getAttribute('value');
+    if (props.isInMove === '') {
       props.setIsClicked(isClicked => isClicked = true);
-    } else
-    if (props.clickedCard.rank === topCard.rank && props.clickedCard.suit === topCard.suit) {
+    }
+    if (props.isInMove === props.name) {
       props.setIsClicked(isClicked => isClicked = false);
     }
   }
 
-  useOutsideClickAlerter(ref, (event) => {
-    let targetName = event.target.getAttribute('class');
-    if (targetName === 'solitaire') return;
-    if (targetName === 'card') {
-      props.setIsClicked(isClicked => isClicked = false);
-    }
-    // if (props.isClicked) {
-    //   if (targetName === 'foundation empty') {
-    //     props.setIsClicked(isClicked => isClicked = false);
-    //     let cards = props.cards;
-    //     cards.splice(cards.length - 1);
-    //     props.setCards(...props.cards, cards);
-    //   }
-    // }
-  });
-  // console.log('Pile: ', props.name);
+  useOutsideClickAlerter(ref);
+  
   return (
     <div 
       onClick={handleClick}
@@ -49,7 +37,8 @@ const Pile = (props) => {
           isClicked={props.isClicked}
           setIsClicked={props.setIsClicked}
           isInMove={props.isInMove}
-          setIsInMove={props.setIsInMove}/>
+          setIsInMove={props.setIsInMove}
+        />
       }
     </div>
   )
