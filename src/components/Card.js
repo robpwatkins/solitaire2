@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-import { usePreviousValue } from '../usePreviousValue';
+import React from 'react';
 
 const Card = (props) => {
 
