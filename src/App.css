@@ -63,8 +63,9 @@
   border-radius: 10px;
 }
 
-.empty {
-  border: 2px dashed rgba(0, 0, 0, 0.459);
+
+.heyoo {
+  color: hotpink;
 }
 
 .foundation {
@@ -87,6 +88,10 @@
   height: 200px;
   border: 3px solid rgb(0, 0, 0);
   border-radius: 10px;
+}
+
+.empty {
+  border: 2px dashed rgba(0, 0, 0, 0.459);
 }
 
 .tableau:nth-child(4) {

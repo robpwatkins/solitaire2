@@ -9,9 +9,17 @@ const Tableau = (props) => {
     props.setIsClicked(isClicked => !isClicked);
   }
 
+  let tblClass = [
+    'tableau',
+    props.isClicked && 'clicked',
+    props.cards.length === 0 && 'empty'
+  ]
+  tblClass = tblClass.join(' ')
+
   return (
     <div 
-      className={props.isClicked ? "tableau clicked" : "tableau"}
+      // className={props.isClicked ? "tableau clicked" : "tableau"}
+      className={tblClass}
       onClick={handleClick}
     >
       {props.cards.length > 0 &&
