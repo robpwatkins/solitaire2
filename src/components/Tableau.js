@@ -7,6 +7,11 @@ const Tableau = (props) => {
 
   const handleClick = () => {
     props.setIsClicked(isClicked => !isClicked);
+    if (props.clickedCards.length === 0) {
+      props.setOrigin(props.name);
+    } else {
+      props.setDestination(props.name);
+    }
   }
 
   let tblClass = [
@@ -21,6 +26,7 @@ const Tableau = (props) => {
       // className={props.isClicked ? "tableau clicked" : "tableau"}
       className={tblClass}
       onClick={handleClick}
+      value={props.name}
     >
       {props.cards.length > 0 &&
         <Card 
