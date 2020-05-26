@@ -2,18 +2,20 @@ import React, { useEffect } from 'react';
 import Card from '../components/Card';
 
 const Tableau = (props) => {
-  let {isClicked, moveSuccessful, cards, setCards, clickedCards, setClickedCards, setIsClicked, setMoveSuccessful} = props;
+  const {
+    cards, 
+    setCards, 
+    isClicked, 
+    setIsClicked,
+    clickedCards,
+    setClickedCards, 
+    setOrigin,
+    setDestination,
+    moveSuccessful, 
+    setMoveSuccessful, 
+  } = props;
 
   let topCard = props.cards[props.cards.length - 1];
-
-  // useEffect(() => {
-  //   if (clickedCards.length === 2 && moveSuccessful) {
-  //     let card = clickedCards[0];
-  //     setCards([...cards, card]);
-  //     setMoveSuccessful(moveSuccessful => moveSuccessful = false);
-  //     setClickedCards([]);
-  //   }
-  // }, [clickedCards, moveSuccessful, setCards, cards]);
   
   useEffect(() => {
     if (isClicked && moveSuccessful) {
@@ -21,6 +23,7 @@ const Tableau = (props) => {
         setCards([...cards, clickedCards[0]]);
         setMoveSuccessful(moveSuccessful => moveSuccessful = false);
         setIsClicked(isClicked => isClicked = false);
+        setClickedCards([]);
       } else {
         let newCards = cards;
         newCards.splice(cards.length - 1);
@@ -31,16 +34,16 @@ const Tableau = (props) => {
     if (clickedCards.length === 0) {
       setIsClicked(isClicked => isClicked = false);
     }
-  }, [isClicked, moveSuccessful, cards, setCards, clickedCards, setIsClicked]);
+  }, [isClicked, moveSuccessful, cards, setCards, clickedCards, setMoveSuccessful, setIsClicked]);
 
   const handleClick = () => {
-    if (props.clickedCards.length === 0) {
-      props.setIsClicked(isClicked => isClicked = true);
-      props.setOrigin(origin => origin = props.name);
+    if (clickedCards.length === 0) {
+      setIsClicked(isClicked => isClicked = true);
+      setOrigin(origin => origin = props.name);
     } else
     if (props.clickedCards.length === 1) {
       setIsClicked(isClicked => isClicked = true);
-      props.setDestination(destination => destination = props.name);
+      setDestination(destination => destination = props.name);
     }
   }
 
@@ -50,21 +53,16 @@ const Tableau = (props) => {
     cards.length === 0 && 'empty'
   ]
   tblClass = tblClass.join(' ')
-  console.log(props.name, clickedCards.length, isClicked);
+  // console.log(props.name, clickedCards.length, isClicked);
   return (
-    <div 
-      // className={props.isClicked ? "tableau clicked" : "tableau"}
-      className={tblClass}
-      onClick={handleClick}
-      value={props.name}
-    >
-      {props.cards.length > 0 &&
+    <div className={tblClass} onClick={handleClick}>
+      {props.cards.length > 0 && (
         <Card 
           {...topCard}
-          setClickedCards={props.setClickedCards}
-          clickedCards={props.clickedCards}
+          setClickedCards={setClickedCards}
+          clickedCards={clickedCards}
         />
-      }
+      )}
     </div>
   )
 }

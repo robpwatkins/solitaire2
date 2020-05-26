@@ -61,9 +61,7 @@ const Solitaire = () => {
           } else destinationColor = 'b';
           if (originColor !== destinationColor) {
             setMoveSuccessful(moveSuccessful => moveSuccessful = true);
-            // setClickedCards([]);
           } else {
-            // setMoveSuccessful(moveSuccessful => moveSuccessful = false);
             setClickedCards([]);
           }
         } else {
@@ -71,6 +69,7 @@ const Solitaire = () => {
           return;
         }
       }
+      
     }
   }, [setDestination, destination, setOrigin, origin, clickedCards])
   // console.log('Solitaire: ', {origin}, {destination}, clickedCards.length);
