@@ -1,6 +1,6 @@
 export const cards = [
   {
-    rank: 8,
+    rank: 1,
     suit: 'Clubs!'
   },
   {

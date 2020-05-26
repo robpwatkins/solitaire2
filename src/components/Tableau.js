@@ -5,8 +5,6 @@ const Tableau = (props) => {
   const {
     cards, 
     setCards, 
-    // isClicked, 
-    // setIsClicked,
     clickedCards,
     setClickedCards, 
     isOrigin,
@@ -59,7 +57,7 @@ const Tableau = (props) => {
     cards.length === 0 && 'empty'
   ]
   tblClass = tblClass.join(' ')
-  console.log(props.name, isOrigin, moveSuccessful);
+  // console.log(props.name, isOrigin, moveSuccessful);
   return (
     <div className={tblClass} onClick={handleClick}>
       {props.cards.length > 0 && (
