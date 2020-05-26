@@ -33,9 +33,8 @@ const Solitaire = () => {
     // setPile5(pile5 => pile5 = [cards[4], cards[10], cards[15], cards[19], cards[22]]);
     // setPile6(pile6 => pile6 = [cards[5], cards[11], cards[16], cards[20], cards[23], cards[25]]);
     // setPile7(pile7 => pile7 = [cards[6], cards[12], cards[17], cards[21], cards[24], cards[26], cards[27]]);
-
   }, [setFnd1, setTabl1]);
-  console.log('Solitaire: ', clickedCards);
+
   return (
     <div className="solitaire">
       <Deck />

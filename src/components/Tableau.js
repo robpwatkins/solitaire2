@@ -15,7 +15,11 @@ const Tableau = (props) => {
       onClick={handleClick}
     >
       {props.cards.length > 0 &&
-        <Card {...topCard} setClickedCards={props.setClickedCards} />
+        <Card 
+          {...topCard}
+          setClickedCards={props.setClickedCards}
+          clickedCards={props.clickedCards}
+        />
       }
     </div>
   )

@@ -8,9 +8,9 @@ const Card = (props) => {
       rank: props.rank,
       suit: props.suit
     }
-    props.setClickedCards(clickedCards => clickedCards = [card]);
+    props.setClickedCards([...props.clickedCards, card]);
   }
-
+  
   return (
     <div className="card" onClick={handleClick}>
       {props.rank} of {props.suit}
