@@ -21,6 +21,9 @@ const Tableau = (props) => {
   let topCard = props.cards[props.cards.length - 1];
   
   useEffect(() => {
+      if (clickedCards.length === 0 && isOrigin) {
+        setIsOrigin(isOrigin => isOrigin = false);
+      }
       if (isDestination && moveSuccessful) {
         setCards([...cards, clickedCards[0]]);
         setMoveSuccessful(moveSuccessful => moveSuccessful = false);
@@ -33,9 +36,6 @@ const Tableau = (props) => {
         setCards(...cards, newCards);
         setIsOrigin(isOrigin => isOrigin = false);
       }
-    if (clickedCards.length === 0) {
-      setIsOrigin(isOrigin => isOrigin = false);
-    }
   }, [isDestination, moveSuccessful, setCards, cards, clickedCards, setMoveSuccessful, setIsDestination, setClickedCards]);
 
   const handleClick = () => {
@@ -45,6 +45,9 @@ const Tableau = (props) => {
       // setOrigin(origin => origin = props.name);
     } else
     if (clickedCards.length === 1) {
+      if (isOrigin) {
+        setIsOrigin(isOrigin => isOrigin = false);
+      } else
       setIsDestination(isDestination => isDestination = true);
       setDestination(destination => destination = props.name);
     }
@@ -56,7 +59,7 @@ const Tableau = (props) => {
     cards.length === 0 && 'empty'
   ]
   tblClass = tblClass.join(' ')
-  // console.log(props.name, isClicked);
+  console.log(props.name, isOrigin, moveSuccessful);
   return (
     <div className={tblClass} onClick={handleClick}>
       {props.cards.length > 0 && (
