@@ -39,7 +39,7 @@ const Solitaire = () => {
     // setPile7(pile7 => pile7 = [cards[6], cards[12], cards[17], cards[21], cards[24], cards[26], cards[27]]);
     // setTableau7([]);
 
-  }, [setTableau1, setTableau2, /*setTableau3, setTableau4, setTableau5, setTableau6, setTableau7*/]);
+  }, [/*setTableau1, setTableau2, setTableau3, setTableau4, setTableau5, setTableau6, setTableau7*/]);
 
   useEffect(() => {
     if (clickedCards.length === 2) {
@@ -51,14 +51,26 @@ const Solitaire = () => {
       }
       if (origin.includes('tableau') && destination.includes('tableau')) {
         if (clickedCards[0].rank === clickedCards[1].rank - 1) {
-          let cards;
-          if (origin === 'tableau1') {
-            cards = tableau1;
-            cards.splice(cards.length - 1);
-            setTableau1(cards);
+          let originColor, destinationColor;
+          if (clickedCards[0].suit === ('Hearts!' || 'Diamonds!')) {
+            originColor = 'r';
+          } else originColor = 'b';
+          if (clickedCards[1].suit === ('Hearts!' || 'Diamonds!')) {
+            destinationColor = 'r';
+          } else destinationColor = 'b';
+          if (originColor !== destinationColor) {
+            if (origin === 'tableau1') {
+              let cards = tableau1;
+              let card = cards.splice(cards.length - 1);
+              if (destination === 'tableau2') {
+                setTableau2([...tableau2, card[0]]);
+                setClickedCards([]);
+              }
+            }
+          } else {
             setTbl1IsClicked(tbl1IsClicked => tbl1IsClicked = false);
+            setClickedCards([]);
           }
-          // setClickedCards([]);
         }
       }
     }

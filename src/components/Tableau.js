@@ -5,11 +5,11 @@ const Tableau = (props) => {
 
   let topCard = props.cards[props.cards.length - 1];
 
-  // useEffect(() => {
-  //   if (props.clickedCards.length === 0) {
-  //     props.setIsClicked(isClicked => isClicked = false);
-  //   }
-  // })
+  useEffect(() => {
+    if (props.clickedCards.length === 0) {
+      props.setIsClicked(isClicked => isClicked = false);
+    }
+  })
 
   const handleClick = () => {
     if (props.clickedCards.length === 0) {
@@ -25,7 +25,7 @@ const Tableau = (props) => {
     props.cards.length === 0 && 'empty'
   ]
   tblClass = tblClass.join(' ')
-  console.log('Cards', props.cards);
+  console.log(props.name, props.cards);
   return (
     <div 
       // className={props.isClicked ? "tableau clicked" : "tableau"}
