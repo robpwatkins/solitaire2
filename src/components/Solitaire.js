@@ -24,6 +24,7 @@ const Solitaire = () => {
   const [clickedCards, setClickedCards] = useState([]);
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
+  const [moveSuccessful, setMoveSuccessful] = useState(false);
 
   useEffect(() => {
     setTableau1(tableau1 => tableau1 = [cards[0]]);
@@ -39,7 +40,7 @@ const Solitaire = () => {
     // setPile7(pile7 => pile7 = [cards[6], cards[12], cards[17], cards[21], cards[24], cards[26], cards[27]]);
     // setTableau7([]);
 
-  }, [/*setTableau1, setTableau2, setTableau3, setTableau4, setTableau5, setTableau6, setTableau7*/]);
+  }, [setTableau1, setTableau2/*, setTableau3, setTableau4, setTableau5, setTableau6, setTableau7*/]);
 
   useEffect(() => {
     if (clickedCards.length === 2) {
@@ -49,28 +50,25 @@ const Solitaire = () => {
         setClickedCards([]);
         return;
       }
-      if (origin.includes('tableau') && destination.includes('tableau')) {
+      if (destination.includes('tableau')) {
         if (clickedCards[0].rank === clickedCards[1].rank - 1) {
           let originColor, destinationColor;
-          if (clickedCards[0].suit === ('Hearts!' || 'Diamonds!')) {
+          if (clickedCards[0].suit === 'Hearts!' || clickedCards[0].suit === 'Diamonds!') {
             originColor = 'r';
           } else originColor = 'b';
-          if (clickedCards[1].suit === ('Hearts!' || 'Diamonds!')) {
+          if (clickedCards[1].suit === 'Hearts!' || clickedCards[1].suit === 'Diamonds!') {
             destinationColor = 'r';
           } else destinationColor = 'b';
           if (originColor !== destinationColor) {
-            if (origin === 'tableau1') {
-              let cards = tableau1;
-              let card = cards.splice(cards.length - 1);
-              if (destination === 'tableau2') {
-                setTableau2([...tableau2, card[0]]);
-                setClickedCards([]);
-              }
-            }
+            setMoveSuccessful(moveSuccessful => moveSuccessful = true);
+            // setClickedCards([]);
           } else {
-            setTbl1IsClicked(tbl1IsClicked => tbl1IsClicked = false);
+            // setMoveSuccessful(moveSuccessful => moveSuccessful = false);
             setClickedCards([]);
           }
+        } else {
+          setClickedCards([]);
+          return;
         }
       }
     }
@@ -94,16 +92,22 @@ const Solitaire = () => {
         setClickedCards={setClickedCards}
         setOrigin={setOrigin}
         setDestination={setDestination}
+        moveSuccessful={moveSuccessful}
+        setMoveSuccessful={setMoveSuccessful}
       />
       <Tableau
         name="tableau2"
         cards={tableau2}
+        setCards={setTableau2}
         isClicked={tbl2IsClicked}
         setIsClicked={setTbl2IsClicked}
         clickedCards={clickedCards}
         setClickedCards={setClickedCards}
         setOrigin={setOrigin}
-        setDestination={setDestination}/>
+        setDestination={setDestination}
+        moveSuccessful={moveSuccessful}
+        setMoveSuccessful={setMoveSuccessful}
+      />
       {/* <Tableau
         name="tableau3"
         cards={tableau3}
