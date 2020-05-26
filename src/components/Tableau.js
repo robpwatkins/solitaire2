@@ -9,7 +9,6 @@ const Tableau = (props) => {
     setIsClicked,
     clickedCards,
     setClickedCards, 
-    setOrigin,
     setDestination,
     moveSuccessful, 
     setMoveSuccessful, 
@@ -34,14 +33,15 @@ const Tableau = (props) => {
     if (clickedCards.length === 0) {
       setIsClicked(isClicked => isClicked = false);
     }
-  }, [isClicked, moveSuccessful, cards, setCards, clickedCards, setMoveSuccessful, setIsClicked]);
+  }, [isClicked, moveSuccessful, cards, setCards, clickedCards, setMoveSuccessful, setIsClicked, setClickedCards]);
 
   const handleClick = () => {
+    if (cards.length === 0) return;
     if (clickedCards.length === 0) {
       setIsClicked(isClicked => isClicked = true);
-      setOrigin(origin => origin = props.name);
+      // setOrigin(origin => origin = props.name);
     } else
-    if (props.clickedCards.length === 1) {
+    if (clickedCards.length === 1) {
       setIsClicked(isClicked => isClicked = true);
       setDestination(destination => destination = props.name);
     }

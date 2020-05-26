@@ -6,7 +6,7 @@ import Tableau from '../components/Tableau';
 import { cards } from '../cards';
 
 const Solitaire = () => {
-  // const [fnd1, setFnd1] = useState([]);
+  const [foundation1, setFoundation1] = useState([]);
   const [tableau1, setTableau1] = useState([]);
   const [tableau2, setTableau2] = useState([]);
   // const [tableau3, setTableau3] = useState([]);
@@ -21,6 +21,7 @@ const Solitaire = () => {
   // const [tbl5IsClicked, setTbl5IsClicked] = useState(false);
   // const [tbl6IsClicked, setTbl6IsClicked] = useState(false);
   // const [tbl7IsClicked, setTbl7IsClicked] = useState(false);
+  const [fnd1IsClicked, setFnd1IsClicked] = useState(false);
   const [clickedCards, setClickedCards] = useState([]);
   const [origin, setOrigin] = useState('');
   const [destination, setDestination] = useState('');
@@ -43,6 +44,11 @@ const Solitaire = () => {
   }, [setTableau1, setTableau2/*, setTableau3, setTableau4, setTableau5, setTableau6, setTableau7*/]);
 
   useEffect(() => {
+    if (clickedCards.length === 1) {
+      if (clickedCards[0].rank === 1 && destination === 'empty-foundation') {
+        setMoveSuccessful(moveSuccessful => moveSuccessful = true);
+      }
+    }
     if (clickedCards.length === 2) {
       if (destination === origin) {
         setDestination(destination => destination = '');
@@ -69,19 +75,30 @@ const Solitaire = () => {
           return;
         }
       }
-      
     }
   }, [setDestination, destination, setOrigin, origin, clickedCards])
-  // console.log('Solitaire: ', {origin}, {destination}, clickedCards.length);
+  // console.log('Solitaire: ', {destination});
   return (
     <div className="solitaire">
       <Deck />
       <WastePile />
+      <Foundation 
+        name="foundation1"
+        cards={foundation1}
+        setCards={setFoundation1}
+        isClicked={fnd1IsClicked}
+        setIsClicked={setFnd1IsClicked}
+        clickedCards={clickedCards}
+        setClickedCards={setClickedCards}
+        setDestination={setDestination}
+        moveSuccessful={moveSuccessful}
+        setMoveSuccessful={setMoveSuccessful}
+      />
+      {/* <Foundation />
       <Foundation />
-      <Foundation />
-      <Foundation />
-      <Foundation />
+      <Foundation /> */}
       <Tableau 
+// can eventually be set simply to "tableau." probably.
         name="tableau1"
         cards={tableau1}
         setCards={setTableau1}
@@ -89,7 +106,6 @@ const Solitaire = () => {
         setIsClicked={setTbl1IsClicked}
         clickedCards={clickedCards}
         setClickedCards={setClickedCards}
-        setOrigin={setOrigin}
         setDestination={setDestination}
         moveSuccessful={moveSuccessful}
         setMoveSuccessful={setMoveSuccessful}
