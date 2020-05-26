@@ -1,40 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import Pile from '../components/Pile';
+import React from 'react';
+import Card from '../components/Card';
 
 const Tableau = (props) => {
-  const [pile1Clicked, setPile1Clicked] = useState(null);
-  const [pile2Clicked, setPile2Clicked] = useState(null);
+
+  let topCard = props.cards[props.cards.length - 1];
+
+  const handleClick = () => {
+    props.setIsClicked(isClicked => !isClicked);
+  }
 
   return (
-    <>
-      <Pile
-        name="pile1"
-        cards={props.pile1}
-        setCards={props.setPile1}
-        clickedCard={props.clickedCard}
-        setClickedCard={props.setClickedCard}
-        isClicked={pile1Clicked}
-        setIsClicked={setPile1Clicked}
-        isInMove={props.isInMove}
-        setIsInMove={props.setIsInMove}
-      />
-      <Pile
-        name="pile2"
-        cards={props.pile2}
-        setCards={props.setPile2}
-        clickedCard={props.clickedCard}
-        setClickedCard={props.setClickedCard}
-        isClicked={pile2Clicked}
-        setIsClicked={setPile2Clicked}
-        isInMove={props.isInMove}
-        setIsInMove={props.setIsInMove} 
-      />
-      {/* <Pile /> */}
-      {/* <Pile /> */}
-      {/* <Pile /> */}
-      {/* <Pile /> */}
-      {/* <Pile /> */}
-    </>
+    <div 
+      className={props.isClicked ? "tableau clicked" : "tableau"}
+      onClick={handleClick}
+    >
+      {props.cards.length > 0 &&
+        <Card {...topCard} setClickedCards={props.setClickedCards} />
+      }
+    </div>
   )
 }
 
