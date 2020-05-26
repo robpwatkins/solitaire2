@@ -12,16 +12,15 @@ const Card = (props) => {
   let prevCard = usePreviousValue(props.clickedCard);
   
   const handleClick = (event) => {
-    if (props.isInMove === '') {
-      props.setClickedCard(clickedCard => clickedCard = currentCard);
+    if (props.clickedCard.length === 0) {
+      props.setClickedCard([...props.clickedCard, currentCard]);
       props.setIsClicked(isClicked => isClicked = true);
-    } 
-    // else {
-      // props.setIsInMove(isInMove => isInMove = '');
-      // props.setClickedCard([]);
-    // }
+    } else {
+      props.setIsClicked(isClicked => isClicked = false);
+      props.setClickedCard([]);
+    }
   }
-  console.log({prevCard});
+
   return (
     <div
       value={props.name}
