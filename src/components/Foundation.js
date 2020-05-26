@@ -5,8 +5,8 @@ const Foundation = (props) => {
   const {
     cards, 
     setCards, 
-    isClicked, 
-    setIsClicked,
+    // isClicked, 
+    // setIsClicked,
     clickedCards,
     setClickedCards, 
     setDestination,
@@ -20,14 +20,14 @@ const Foundation = (props) => {
   }
 
   useEffect(() => {
-    if (isClicked && moveSuccessful) {
+    // if (isClicked && moveSuccessful) {
       if (cards.length === 0 && clickedCards.length === 1) {
         setCards([...cards, clickedCards[0]]);
         setMoveSuccessful(moveSuccessful => moveSuccessful = false);
-        setIsClicked(isClicked => isClicked = false);
+        // setIsClicked(isClicked => isClicked = false);
         setClickedCards([]);
       }
-    }
+    // }
   })
 
   const handleClick = event => {
@@ -45,16 +45,24 @@ const Foundation = (props) => {
       }
     }
   }
-  // console.log(cards.length, clickedCards.length);
+  let fndClass = [
+    'foundation',
+    (isClicked && clickedCards.length === 1 && cards.length > 0) && 'clicked',
+    cards.length === 0 && 'empty'
+  ]
+  fndClass = fndClass.join(' ')
+  console.log(props.name, cards.length, clickedCards.length);
   return (
     <div 
-      className={cards.length > 0 ? "foundation" : "foundation empty"} 
+      className={fndClass} 
       onClick={event => handleClick(event)}
       value={cards.length === 0 && "empty-foundation"}
     >
       {props.cards.length > 0 && (
         <Card 
           {...topCard}
+          clickedCards={clickedCards}
+          setClickedCards={setClickedCards}
         />
       )}
     </div>

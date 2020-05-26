@@ -5,10 +5,14 @@ const Tableau = (props) => {
   const {
     cards, 
     setCards, 
-    isClicked, 
-    setIsClicked,
+    // isClicked, 
+    // setIsClicked,
     clickedCards,
     setClickedCards, 
+    isOrigin,
+    setIsOrigin,
+    isDestination,
+    setIsDestination,
     setDestination,
     moveSuccessful, 
     setMoveSuccessful, 
@@ -17,43 +21,42 @@ const Tableau = (props) => {
   let topCard = props.cards[props.cards.length - 1];
   
   useEffect(() => {
-    if (isClicked && moveSuccessful) {
-      if (cards.length === 2) {
+      if (isDestination && moveSuccessful) {
         setCards([...cards, clickedCards[0]]);
         setMoveSuccessful(moveSuccessful => moveSuccessful = false);
-        setIsClicked(isClicked => isClicked = false);
+        setIsDestination(isDestination => isDestination = false);
         setClickedCards([]);
-      } else {
+      } else 
+      if (isOrigin && moveSuccessful) {
         let newCards = cards;
         newCards.splice(cards.length - 1);
         setCards(...cards, newCards);
-        setIsClicked(isClicked => isClicked = false);
+        setIsOrigin(isOrigin => isOrigin = false);
       }
-    }
     if (clickedCards.length === 0) {
-      setIsClicked(isClicked => isClicked = false);
+      setIsOrigin(isOrigin => isOrigin = false);
     }
-  }, [isClicked, moveSuccessful, cards, setCards, clickedCards, setMoveSuccessful, setIsClicked, setClickedCards]);
+  }, [isDestination, moveSuccessful, setCards, cards, clickedCards, setMoveSuccessful, setIsDestination, setClickedCards]);
 
   const handleClick = () => {
     if (cards.length === 0) return;
     if (clickedCards.length === 0) {
-      setIsClicked(isClicked => isClicked = true);
+      setIsOrigin(isOrigin => isOrigin = true);
       // setOrigin(origin => origin = props.name);
     } else
     if (clickedCards.length === 1) {
-      setIsClicked(isClicked => isClicked = true);
+      setIsDestination(isDestination => isDestination = true);
       setDestination(destination => destination = props.name);
     }
   }
 
   let tblClass = [
     'tableau',
-    (isClicked && clickedCards.length === 1) && 'clicked',
+    isOrigin /*&& clickedCards.length === 1*/ && 'clicked',
     cards.length === 0 && 'empty'
   ]
   tblClass = tblClass.join(' ')
-  // console.log(props.name, clickedCards.length, isClicked);
+  // console.log(props.name, isClicked);
   return (
     <div className={tblClass} onClick={handleClick}>
       {props.cards.length > 0 && (

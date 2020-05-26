@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Deck from '../components/Deck';
 import WastePile from '../components/WastePile';
-import Foundation from '../components/Foundation';
+// import Foundation from '../components/Foundation';
 import Tableau from '../components/Tableau';
 import { cards } from '../cards';
 
@@ -14,8 +14,12 @@ const Solitaire = () => {
   // const [tableau5, setTableau5] = useState([]);
   // const [tableau6, setTableau6] = useState([]);
   // const [tableau7, setTableau7] = useState([]);
-  const [tbl1IsClicked, setTbl1IsClicked] = useState(false);
-  const [tbl2IsClicked, setTbl2IsClicked] = useState(false);
+  const [tbl1IsOrigin, setTbl1IsOrigin] = useState(false);
+  const [tbl1IsDestination, setTbl1IsDestination] = useState(false);
+  const [tbl2IsOrigin, setTbl2IsOrigin] = useState(false);
+  const [tbl2IsDestination, setTbl2IsDestination] = useState(false);
+  // const [tbl1IsClicked, setTbl1IsClicked] = useState(false);
+  // const [tbl2IsClicked, setTbl2IsClicked] = useState(false);
   // const [tbl3IsClicked, setTbl3IsClicked] = useState(false);
   // const [tbl4IsClicked, setTbl4IsClicked] = useState(false);
   // const [tbl5IsClicked, setTbl5IsClicked] = useState(false);
@@ -45,16 +49,33 @@ const Solitaire = () => {
 
   useEffect(() => {
     if (clickedCards.length === 1) {
-      if (clickedCards[0].rank === 1 && destination === 'empty-foundation') {
+      if (destination === 'empty-foundation' && clickedCards[0].rank === 1) {
         setMoveSuccessful(moveSuccessful => moveSuccessful = true);
       }
     }
     if (clickedCards.length === 2) {
-      if (destination === origin) {
-        setDestination(destination => destination = '');
-        setOrigin(origin => origin = '');
-        setClickedCards([]);
-        return;
+      // if (destination === origin) {
+      //   setDestination(destination => destination = '');
+      //   setOrigin(origin => origin = '');
+      //   setClickedCards([]);
+      //   return;
+      // }
+      if (destination.includes('foundation')) {
+        if (clickedCards[0].rank === clickedCards[1].rank + 1) {
+          let originColor, destinationColor;
+          if (clickedCards[0].suit === 'Hearts!' || clickedCards[0].suit === 'Diamonds!') {
+            originColor = 'r';
+          } else originColor = 'b';
+          if (clickedCards[1].suit === 'Hearts!' || clickedCards[1].suit === 'Diamonds!') {
+            destinationColor = 'r';
+          } else destinationColor = 'b';
+          if (originColor !== destinationColor) {
+            setMoveSuccessful(moveSuccessful => moveSuccessful = true);
+          } else {
+            setClickedCards([]);
+            return;
+          }
+        }
       }
       if (destination.includes('tableau')) {
         if (clickedCards[0].rank === clickedCards[1].rank - 1) {
@@ -69,6 +90,7 @@ const Solitaire = () => {
             setMoveSuccessful(moveSuccessful => moveSuccessful = true);
           } else {
             setClickedCards([]);
+            return;
           }
         } else {
           setClickedCards([]);
@@ -77,35 +99,41 @@ const Solitaire = () => {
       }
     }
   }, [setDestination, destination, setOrigin, origin, clickedCards])
-  // console.log('Solitaire: ', {destination});
+  // console.log('Solitaire: ', {origin}, {destination});
   return (
     <div className="solitaire">
       <Deck />
       <WastePile />
-      <Foundation 
+      {/* <Foundation 
         name="foundation1"
         cards={foundation1}
         setCards={setFoundation1}
-        isClicked={fnd1IsClicked}
-        setIsClicked={setFnd1IsClicked}
+        // isClicked={fnd1IsClicked}
+        // setIsClicked={setFnd1IsClicked}
         clickedCards={clickedCards}
         setClickedCards={setClickedCards}
+        isOrigin={tbl1IsOrigin}
+        setIsOrigin={setTbl1IsOrigin}
+        
         setDestination={setDestination}
         moveSuccessful={moveSuccessful}
         setMoveSuccessful={setMoveSuccessful}
       />
-      {/* <Foundation />
+      <Foundation />
       <Foundation />
       <Foundation /> */}
       <Tableau 
-// can eventually be set simply to "tableau." probably.
         name="tableau1"
         cards={tableau1}
         setCards={setTableau1}
-        isClicked={tbl1IsClicked}
-        setIsClicked={setTbl1IsClicked}
+        // isClicked={tbl1IsClicked}
+        // setIsClicked={setTbl1IsClicked}
         clickedCards={clickedCards}
         setClickedCards={setClickedCards}
+        isOrigin={tbl1IsOrigin}
+        setIsOrigin={setTbl1IsOrigin}
+        isDestination={tbl1IsDestination}
+        setIsDestination={setTbl1IsDestination}
         setDestination={setDestination}
         moveSuccessful={moveSuccessful}
         setMoveSuccessful={setMoveSuccessful}
@@ -114,11 +142,14 @@ const Solitaire = () => {
         name="tableau2"
         cards={tableau2}
         setCards={setTableau2}
-        isClicked={tbl2IsClicked}
-        setIsClicked={setTbl2IsClicked}
+        // isClicked={tbl2IsClicked}
+        // setIsClicked={setTbl2IsClicked}
         clickedCards={clickedCards}
         setClickedCards={setClickedCards}
-        setOrigin={setOrigin}
+        isOrigin={tbl2IsOrigin}
+        setIsOrigin={setTbl2IsOrigin}
+        isDestination={tbl2IsDestination}
+        setIsDestination={setTbl2IsDestination}
         setDestination={setDestination}
         moveSuccessful={moveSuccessful}
         setMoveSuccessful={setMoveSuccessful}
