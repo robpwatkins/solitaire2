@@ -36,6 +36,17 @@ const Solitaire = () => {
 
   }, [setFnd1, setTabl1]);
 
+  useEffect(() => {
+    if (clickedCards.length === 2) {
+      if (destination === origin) {
+        setDestination(destination => destination = '');
+        setOrigin(origin => origin = '');
+        setClickedCards([]);
+        return;
+      }
+    }
+  })
+  console.log('Solitaire: ', {origin}, {destination}, clickedCards.length);
   return (
     <div className="solitaire">
       <Deck />
