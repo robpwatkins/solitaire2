@@ -49,7 +49,18 @@ const Solitaire = () => {
         setClickedCards([]);
         return;
       }
-      console.log({origin}, {destination});
+      if (origin.includes('tableau') && destination.includes('tableau')) {
+        if (clickedCards[0].rank === clickedCards[1].rank - 1) {
+          let cards;
+          if (origin === 'tableau1') {
+            cards = tableau1;
+            cards.splice(cards.length - 1);
+            setTableau1(cards);
+            setTbl1IsClicked(tbl1IsClicked => tbl1IsClicked = false);
+          }
+          // setClickedCards([]);
+        }
+      }
     }
   }, [setDestination, destination, setOrigin, origin, clickedCards])
   // console.log('Solitaire: ', {origin}, {destination}, clickedCards.length);
@@ -64,6 +75,7 @@ const Solitaire = () => {
       <Tableau 
         name="tableau1"
         cards={tableau1}
+        setCards={setTableau1}
         isClicked={tbl1IsClicked}
         setIsClicked={setTbl1IsClicked}
         clickedCards={clickedCards}
