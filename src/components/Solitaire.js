@@ -50,8 +50,13 @@ const Solitaire = () => {
 
   useEffect(() => {
     if (clickedCards.length === 1) {
-      if (destination === 'empty-foundation' && clickedCards[0].rank === 1) {
-        setMoveSuccessful(moveSuccessful => moveSuccessful = true);
+      if (destination === 'empty-foundation') {
+        if (clickedCards[0].rank === 1) {
+          setMoveSuccessful(moveSuccessful => moveSuccessful = true);
+        } else {
+          setClickedCards([]);
+          return;
+        }
       }
     }
     if (clickedCards.length === 2) {

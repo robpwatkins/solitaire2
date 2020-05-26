@@ -78,7 +78,7 @@ const Foundation = (props) => {
     cards.length === 0 && 'empty'
   ]
   fndClass = fndClass.join(' ')
-  console.log(props.name, isOrigin, clickedCards.length);
+  // console.log(props.name, isOrigin, clickedCards.length);
   return (
     <div 
       className={fndClass} 

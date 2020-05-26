@@ -32,6 +32,7 @@ const Tableau = (props) => {
         let newCards = cards;
         newCards.splice(cards.length - 1);
         setCards(...cards, newCards);
+        setMoveSuccessful(moveSuccessful => moveSuccessful = false);
         setIsOrigin(isOrigin => isOrigin = false);
       }
   }, [isDestination, moveSuccessful, setCards, cards, clickedCards, setMoveSuccessful, setIsDestination, setClickedCards]);
@@ -57,7 +58,7 @@ const Tableau = (props) => {
     cards.length === 0 && 'empty'
   ]
   tblClass = tblClass.join(' ')
-  // console.log(props.name, isOrigin, moveSuccessful);
+  console.log(props.name, isOrigin, moveSuccessful);
   return (
     <div className={tblClass} onClick={handleClick}>
       {props.cards.length > 0 && (
