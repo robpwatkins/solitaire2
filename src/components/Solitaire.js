@@ -7,8 +7,8 @@ import { cards } from '../cards';
 
 const Solitaire = () => {
   const [foundation1, setFoundation1] = useState([]);
-  const [tableau1, setTableau1] = useState([]);
-  const [tableau2, setTableau2] = useState([]);
+  const [tableau1, setTableau1] = useState([cards[0]]);
+  const [tableau2, setTableau2] = useState([cards[1], cards[7]]);
   // const [tableau3, setTableau3] = useState([]);
   // const [tableau4, setTableau4] = useState([]);
   // const [tableau5, setTableau5] = useState([]);
@@ -32,9 +32,9 @@ const Solitaire = () => {
   const [destination, setDestination] = useState('');
   const [moveSuccessful, setMoveSuccessful] = useState(false);
 
-  useEffect(() => {
-    setTableau1(tableau1 => tableau1 = [cards[0]]);
-    setTableau2(tableau2 => tableau2 = [cards[1], cards[7]]);
+  // useEffect(() => {
+    // setTableau1(tableau1 => tableau1 = [cards[0]]);
+    // setTableau2(tableau2 => tableau2 = [cards[1], cards[7]]);
     // setPile3(pile3 => pile3 = [cards[2], cards[8], cards[13]]);
     // setTableau3([]);
     // setPile4(pile4 => pile4 = [cards[3], cards[9], cards[14], cards[18]]);
@@ -46,7 +46,7 @@ const Solitaire = () => {
     // setPile7(pile7 => pile7 = [cards[6], cards[12], cards[17], cards[21], cards[24], cards[26], cards[27]]);
     // setTableau7([]);
 
-  }, [setTableau1, setTableau2/*, setTableau3, setTableau4, setTableau5, setTableau6, setTableau7*/]);
+  // }, [/*setTableau1, setTableau2, setTableau3, setTableau4, setTableau5, setTableau6, setTableau7*/]);
 
   useEffect(() => {
     if (clickedCards.length === 1) {
